@@ -1,10 +1,9 @@
 import { Auth } from "@supabase/auth-ui-react";
-import React from "react";
-import { supabase } from "./config";
 import { ThemeSupa } from "@supabase/auth-ui-shared";
+import { supabase } from "../config";
 import { useNavigate } from "react-router-dom";
 
-function LoginPage() {
+function Login() {
   const navigate = useNavigate();
   supabase.auth.onAuthStateChange((event) => {
     if (event === "SIGNED_IN") {
@@ -15,16 +14,18 @@ function LoginPage() {
   });
 
   return (
-    <div className="App">
-      <header className="header">
-        <Auth
-          supabaseClient={supabase}
-          appearance={{ theme: ThemeSupa }}
-          providers={["google", "facebook"]}
-        />
-      </header>
-    </div>
+    <>
+      <div className="App">
+        <header className="header">
+          <Auth
+            supabaseClient={supabase}
+            appearance={{ theme: ThemeSupa }}
+            providers={["google", "github"]}
+          />
+        </header>
+      </div>
+    </>
   );
 }
 
-export default LoginPage;
+export default Login;
